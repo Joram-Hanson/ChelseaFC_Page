@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#034694">
+  <meta name="description" content="A fan-made guide to Chelsea FC: history, trophies, club legends and the 2026/27 squad.">
+  <title>Chelsea FC | The Blues of Stamford Bridge</title>
+
+  <!-- Fonts from Google Fonts. Page still works if offline -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-page="home">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- HEADER AND NAVIGATION -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+      
+        <img class="brand-logo" src="images/logo.jpg" alt="Chelsea FC logo" width="44" height="44">
+        <span class="brand-name">Chelsea FC</span>
+      </a>
+
+      <button id="nav-toggle" class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html" data-nav="home">Home</a></li>
+          <li><a href="details.html?section=history" data-nav="history">History</a></li>
+          <li><a href="details.html?section=trophies" data-nav="trophies">Trophies</a></li>
+          <li><a href="details.html?section=halloffame" data-nav="halloffame">Hall of Fame</a></li>
+          <li><a href="details.html?section=squad" data-nav="squad">Squad</a></li>
+        </ul>
+      </nav>
+
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">Dark mode</button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero-img" src="images/chelsea club.jpg" alt="Chelsea Stadium">
+      <div class="hero-overlay"></div>
+
+      <div class="container hero-inner">
+        <h1 id="hero-title">The Blues of Stamford Bridge</h1>
+        <p>Founded in 1905. Champions of Europe twice and champions of the world twice. Explore the club's story, its trophies, its legends and the squad for 2026/27.</p>
+        <a class="btn" href="#explore">Explore the club</a>
+      </div>
+
+      <!-- The numbers below are filled in from data.js by script.js.
+     The numbers typed here are only used if JavaScript is switched off. -->
+      <ul id="trophy-strip" class="container trophy-strip" aria-label="Chelsea honours at a glance">
+        <li><span class="count" data-trophy="league">6</span><span class="count-label">League titles</span></li>
+        <li><span class="count" data-trophy="facup">8</span><span class="count-label">FA Cups</span></li>
+        <li><span class="count" data-trophy="ucl">2</span><span class="count-label">Champions Leagues</span></li>
+        <li><span class="count" data-trophy="clubworldcup">2</span><span class="count-label">Club World Cups</span></li>
+      </ul>
+    </section>
+
+    <!-- CARDS (scroll left to right)  -->
+    <section id="explore" class="explore" aria-labelledby="explore-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 id="explore-title">Explore the club</h2>
+            <p>Scroll sideways or use the arrows. Tap a card to open it.</p>
+          </div>
+          <div class="slider-controls">
+            <button id="prev-btn" type="button" aria-label="Scroll cards left">&#8249;</button>
+            <button id="next-btn" type="button" aria-label="Scroll cards right">&#8250;</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="cards-track" class="cards-track" tabindex="0" aria-label="Chelsea topics, scroll sideways for more">
+
+        <!-- CARD 1: History -->
+        <article class="card">
+          <img class="card-img" src="images/chelsea club.jpg" alt="Stamford Bridge stadium">
+          <div class="card-body">
+            <h3><a href="details.html?section=history">History</a></h3>
+            <p>From a pub meeting in 1905 to European champions.</p>
+          </div>
+        </article>
+
+        <!-- CARD 2: Trophies -->
+        <article class="card">
+          <img class="card-img" src="images/trophies.jpg" alt="Chelsea trophies">
+          <div class="card-body">
+            <h3><a href="details.html?section=trophies">Trophies</a></h3>
+            <p>Every major honour the club has won, and when.</p>
+          </div>
+        </article>
+
+        <!-- CARD 3: Hall of Fame -->
+        <article class="card">
+          <img class="card-img" src="images/drogba.jpg" alt="Didier Drogba celebrating">
+          <div class="card-body">
+            <h3><a href="details.html?section=halloffame">Hall of Fame</a></h3>
+            <p>Ten of the greatest players to wear the shirt.</p>
+          </div>
+        </article>
+
+        <!-- CARD 4: Current squad -->
+        <article class="card">
+          <img class="card-img" src="images/squad.jpg" alt="The Chelsea squad">
+          <div class="card-body">
+            <h3><a href="details.html?section=squad">Current squad</a></h3>
+            <p>Meet the 2026/27 first team and where they came from.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!--  DID YOU KNOW  -->
+    <div class="container">
+      <aside class="fact-box" aria-labelledby="fact-title">
+        <h2 id="fact-title">Did you know?</h2>
+        <p id="fact-text" aria-live="polite">Chelsea are the first club to win all five major UEFA club competitions.</p>
+        <button id="fact-btn" class="btn" type="button">Show another fact</button>
+      </aside>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <section aria-labelledby="social-title">
+          <h2 id="social-title">Follow the club</h2>
+          <ul>
+            <li><a href="https://www.instagram.com/chelseafc/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://x.com/ChelseaFC" target="_blank" rel="noopener">X (Twitter)</a></li>
+            <li><a href="https://www.facebook.com/ChelseaFC" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="https://www.youtube.com/@chelseafc" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="https://www.tiktok.com/@chelseafc" target="_blank" rel="noopener">TikTok</a></li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="sponsor-title">
+          <h2 id="sponsor-title">Club partners</h2>
+          
+          <ul class="sponsor-list">
+            <li>Circle (front-of-shirt partner)</li>
+            <li>Nike (kit supplier)</li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="explore-footer-title">
+          <h2 id="explore-footer-title">Explore</h2>
+          <ul>
+            <li><a href="details.html?section=history">History</a></li>
+            <li><a href="details.html?section=trophies">Trophies</a></li>
+            <li><a href="details.html?section=halloffame">Hall of Fame</a></li>
+            <li><a href="details.html?section=squad">Current squad</a></li>
+          </ul>
+        </section>
+
+      </div>
+
+      <p class="footer-note">&copy; <span id="year">2026</span> A student fan project. It is not affiliated with Chelsea Football Club. The Chelsea name, crest and photographs belong to their owners.</p>
+    </div>
+  </footer>
+
+  <button id="back-to-top" class="back-to-top" type="button" aria-label="Back to top" hidden>&#8593;</button>
+
+  <!-- data.js must load BEFORE script.js because script.js uses the data -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

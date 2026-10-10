@@ -1,0 +1,978 @@
+/* =====================================================================
+   style.css - how the Chelsea website looks
+   Sections:
+   1. Design tokens (colours, fonts)   6. Home page
+   2. Base styles                       7. Details pages
+   3. Header and navigation             8. Footer
+   4. Buttons and small parts           9. Light/dark and small screens
+   5. Images and fallbacks
+   ===================================================================== */
+
+/* ---------- 1. DESIGN TOKENS ---------- */
+
+:root {
+  --blue: #034694; /* Chelsea blue */
+  --blue-deep: #0a2a63;
+  --navy: #081a3b;
+  --gold: #d8a31a;
+
+  --bg: #f2f5fa;
+  --surface: #ffffff;
+  --ink: #0c1a33;
+  --muted: #4b5b78;
+  --line: #d5dcea;
+  --accent-text: #034694; /* blue text on light backgrounds */
+
+  --radius: 10px;
+  --font-display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  --font-body:
+    "Barlow", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+
+/* Dark mode: JavaScript sets data-theme="dark" on the <html> tag */
+
+:root[data-theme="dark"] {
+  --bg: #07142c;
+  --surface: #0f2147;
+  --ink: #eef3ff;
+  --muted: #a9b8d6;
+  --line: #223a6e;
+  --accent-text: #8fb8ff;
+}
+
+/* ---------- 2. BASE STYLES ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.05;
+  margin: 0 0 0.6em;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 800;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+h3 {
+  font-size: 1.6rem;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--accent-text);
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.container {
+  width: min(1200px, calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  background: var(--gold);
+  color: #0c1a33;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ---------- 3. HEADER AND NAVIGATION ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--blue);
+  color: #fff;
+  border-bottom: 3px solid var(--gold);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.6rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.7rem;
+}
+
+.site-nav ul {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.site-nav a {
+  display: block;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.site-nav a:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.site-nav a.active {
+  background: #fff;
+  color: var(--blue);
+}
+
+.nav-toggle,
+.theme-toggle {
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: #fff;
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+}
+
+.nav-toggle:hover,
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.nav-toggle {
+  display: none;
+}
+
+/* ---------- 4. BUTTONS AND SMALL PARTS ---------- */
+
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  border: 0;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  background: var(--gold);
+  color: #0c1a33;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  transition: transform 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.link-btn {
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--accent-text);
+  text-decoration: underline;
+}
+
+.chip {
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  text-decoration: none;
+}
+
+.chip:hover {
+  border-color: var(--blue);
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 40;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #0c1a33;
+  border: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ---------- 5. IMAGES AND FALLBACKS ----------
+   If one of your images is missing, JavaScript adds the class
+   "img-missing" and the blue background underneath shows instead.
+*/
+
+.img-missing {
+  display: none;
+}
+
+/* ---------- 6. HOME PAGE ---------- */
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: min(88vh, 780px);
+  overflow: hidden;
+  color: #fff;
+  background: linear-gradient(135deg, var(--blue-deep), var(--navy));
+}
+
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(8, 26, 59, 0.95) 0%,
+    rgba(8, 26, 59, 0.55) 55%,
+    rgba(8, 26, 59, 0.25) 100%
+  );
+}
+
+.hero-inner {
+  position: relative;
+  padding-block: 4rem 2rem;
+  max-width: 1200px;
+}
+
+.hero-inner h1 {
+  max-width: 12ch;
+}
+
+.hero-inner p {
+  max-width: 52ch;
+  font-size: 1.2rem;
+}
+
+/* The trophy shelf at the bottom of the hero */
+
+.trophy-strip {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(216, 163, 26, 0.6);
+  margin-top: 1rem;
+}
+
+.trophy-strip li {
+  padding: 1.2rem 1rem 1.4rem 0;
+}
+
+.trophy-strip li + li {
+  padding-left: 1.2rem;
+  border-left: 1px solid rgba(216, 163, 26, 0.35);
+}
+
+.count {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 6vw, 4.5rem);
+  line-height: 1;
+  color: var(--gold);
+}
+
+.count-label {
+  display: block;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.explore {
+  padding-block: 4rem 2rem;
+}
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-head h2 {
+  margin: 0;
+}
+
+.section-head p {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+}
+
+.slider-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.slider-controls button {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1.5px solid var(--line);
+}
+
+.slider-controls button:hover:not(:disabled) {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+}
+
+.slider-controls button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* The left-to-right scrolling row of cards */
+
+.cards-track {
+  --edge: max(1.25rem, calc((100vw - 1200px) / 2));
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  padding: 0.5rem var(--edge) 1.5rem;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--edge);
+  scrollbar-width: thin;
+}
+
+.card {
+  position: relative;
+  flex: 0 0 min(320px, 78vw);
+  aspect-ratio: 3 / 4;
+  scroll-snap-align: start;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: linear-gradient(160deg, var(--blue), var(--navy));
+  color: #fff;
+}
+
+.card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+
+.card:hover .card-img {
+  transform: scale(1.04);
+}
+
+.card-body {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 4rem 1.4rem 1.4rem;
+  background: linear-gradient(
+    to top,
+    rgba(8, 26, 59, 0.95),
+    rgba(8, 26, 59, 0)
+  );
+}
+
+.card-body h3 {
+  margin-bottom: 0.3rem;
+}
+
+.card-body h3 a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.card-body h3 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+} /* makes the whole card clickable */
+
+.card-body p {
+  margin: 0;
+  font-size: 0.98rem;
+  opacity: 0.92;
+}
+
+.card:focus-within {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.fact-box {
+  margin-block: 2rem 4rem;
+  padding: 2rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--blue);
+}
+
+.fact-box h2 {
+  font-size: 2rem;
+}
+
+.fact-box p {
+  font-size: 1.2rem;
+  max-width: 60ch;
+  min-height: 3.5em;
+}
+
+/* ---------- 7. DETAILS PAGES ---------- */
+
+.page-hero {
+  background: linear-gradient(135deg, var(--blue-deep), var(--navy));
+  color: #fff;
+  padding-block: 3rem 3.5rem;
+}
+
+.page-hero h1 {
+  font-size: clamp(2.6rem, 6vw, 4.5rem);
+  margin-bottom: 0.3em;
+}
+
+.page-hero p {
+  max-width: 60ch;
+  font-size: 1.15rem;
+  margin: 0;
+}
+
+.breadcrumb {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.breadcrumb a {
+  color: #fff;
+}
+
+#detail-content {
+  padding-block: 3rem;
+}
+
+#detail-content section {
+  margin-bottom: 4rem;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.photo {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: linear-gradient(160deg, var(--blue), var(--navy));
+  min-height: 260px;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo figcaption {
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+  background: var(--surface);
+  color: var(--muted);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.6rem 1.5rem;
+  margin: 1.5rem 0 0;
+}
+
+.facts dt {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.facts dd {
+  margin: 0;
+}
+
+/* Timeline */
+
+.timeline-years {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.6rem;
+}
+
+.timeline-panel {
+  margin-top: 1rem;
+  padding: 1.6rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--gold);
+}
+
+.timeline-panel h3 {
+  margin-bottom: 0.4rem;
+}
+
+.timeline-panel p {
+  margin: 0;
+  max-width: 62ch;
+}
+
+.leadership {
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.leadership article {
+  padding: 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.leadership h3 {
+  font-size: 1.4rem;
+}
+
+.leadership p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Trophies */
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.trophy-total {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin: 2rem 0 1.5rem;
+}
+
+.trophy-total strong {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--accent-text);
+}
+
+.trophy-grid {
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.trophy {
+  padding: 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.trophy-count {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 3.4rem;
+  line-height: 1;
+  margin: 0;
+  color: var(--accent-text);
+}
+
+.trophy h3 {
+  margin: 0.2rem 0 0.4rem;
+  font-size: 1.5rem;
+}
+
+.trophy-note {
+  color: var(--muted);
+  font-size: 0.97rem;
+}
+
+.trophy-years {
+  margin: 0.8rem 0 0;
+  font-weight: 600;
+}
+
+/* Hall of fame */
+
+.jump-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.legend {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 2rem;
+  padding-block: 2rem;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 5rem;
+}
+
+.legend-photo {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: linear-gradient(160deg, var(--blue), var(--navy));
+  display: grid;
+  place-items: center;
+}
+
+.legend-photo::before {
+  content: attr(data-initials);
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.legend-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.legend h3 {
+  font-size: 2.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.legend-meta {
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.legend-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 2rem;
+  margin: 1.2rem 0;
+}
+
+.legend-stats div {
+  min-width: 6rem;
+}
+
+.legend-stats dt {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.legend-stats dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 1.1;
+}
+
+.honours {
+  margin: 1rem 0 0;
+  padding-left: 1.2rem;
+  list-style: disc;
+}
+
+.honours li {
+  margin-bottom: 0.3rem;
+}
+
+/* Squad */
+
+.squad-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.squad-controls input {
+  font: inherit;
+  padding: 0.55rem 1rem;
+  min-width: 240px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.squad-count {
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+}
+
+.squad-list {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+}
+
+.player {
+  padding: 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  border-top: 4px solid var(--blue);
+}
+
+.player h3 {
+  margin-bottom: 0.1rem;
+  font-size: 1.7rem;
+}
+
+.player-meta {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 0.8rem;
+}
+
+.player-from {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.player p:last-child {
+  margin: 0;
+}
+
+.more {
+  padding-bottom: 4rem;
+}
+
+.more ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+/* ---------- 8. FOOTER ---------- */
+
+.site-footer {
+  background: var(--navy);
+  color: #dbe5ff;
+  padding-block: 3rem 2rem;
+  border-top: 3px solid var(--gold);
+}
+
+.footer-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.site-footer h2 {
+  font-size: 1.6rem;
+  color: #fff;
+}
+
+.site-footer a {
+  color: #dbe5ff;
+}
+
+.site-footer li {
+  margin-bottom: 0.4rem;
+}
+
+.sponsor-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.sponsor-list li {
+  padding: 0.5rem 1rem;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.footer-note {
+  margin: 2rem 0 0;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+/* ---------- 9. SMALL SCREENS AND ACCESSIBILITY ---------- */
+
+@media (max-width: 860px) {
+  .nav-toggle {
+    display: inline-block;
+  }
+
+  .site-nav {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: var(--blue);
+    padding: 0.8rem 1.25rem 1.2rem;
+    border-bottom: 3px solid var(--gold);
+  }
+
+  .site-nav.open {
+    display: block;
+  }
+
+  .site-nav ul {
+    flex-direction: column;
+  }
+
+  .header-inner {
+    position: relative;
+  }
+
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .legend {
+    grid-template-columns: 1fr;
+  }
+
+  .legend-photo {
+    max-width: 260px;
+  }
+
+  .trophy-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .trophy-strip li:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .brand-name {
+    font-size: 1.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+  }
+}
