@@ -1,5 +1,3 @@
-IMAGES TO ADD (put them in this "images" folder)
-=================================================
 Use these exact file names, or change the paths in data.js and the HTML.
 If an image is missing the page still works and shows a blue block instead.
 
@@ -22,4 +20,4 @@ HALL OF FAME (10 legends, portrait photos work best)
   Terry Cooper.jpg      Ron "Chopper" Harris
   claude.jpg    Claude Makelele
 
-TIP: keep each image under about 500 KB so the pages load fast.
+
